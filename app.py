@@ -25,5 +25,5 @@ def app():
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    # menu()
-    add_csv()
+    menu()
+    # add_csv()
