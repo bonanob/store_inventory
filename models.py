@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String, Integer, DateTime
+from sqlalchemy import create_engine, Column, String, Integer, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -15,8 +15,7 @@ class Product(Base):
     product_name = Column(String)
     product_quantity = Column(Integer)
     product_price = Column(Integer)
-    date_updated = Column(DateTime)
+    date_updated = Column(Date)
 
-
-def __repr__(self):
-    return f'Name: {self.product_name}, QTY: {self.product_quantity}, Price: {self.product_price}, Date Updated: {self.date_updated}'
+    def __repr__(self):
+        return f'Name: {self.product_name}, Price: {self.product_price}, QTY: {self.product_quantity}, Date Updated: {self.date_updated}'
