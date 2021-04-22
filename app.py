@@ -7,6 +7,7 @@ from models import Base, session, engine, Product
 
 
 def menu():
+    """Main menu for the app"""
     while True:
         choice = input('''
             \nSTORE INVENTORY
@@ -24,6 +25,14 @@ def menu():
 
 
 def clean_price(price_str):
+    """cleans the price to int. $1.00 = 100
+
+    Args:
+        price_str (str): price as string
+
+    Returns:
+        int: original price * 100
+    """
     try:
         try:
             price_float = float(price_str)
@@ -43,6 +52,14 @@ def clean_price(price_str):
 
 
 def clean_date(date_str):
+    """converts str to datetime.
+
+    Args:
+        date_str (str): date as str
+
+    Returns:
+        datetime
+    """
     try:
         return_date = datetime.datetime.strptime(date_str, '%m/%d/%Y')
     except ValueError:
@@ -58,6 +75,14 @@ def clean_date(date_str):
 
 
 def clean_id(id_str):
+    """converts id_str to int and checks if it exist in the db
+
+    Args:
+        id_str (str): id as str
+
+    Returns:
+        int: id is int and is in db.
+    """
     id_options = []
     for product in session.query(Product):
         id_options.append(product.product_id)
@@ -83,6 +108,7 @@ def clean_id(id_str):
 
 
 def view_product():
+    """Prints product properties with provided id"""
     id_error = True
     while id_error == True:
         product_id = input('What is the the product ID? ')
@@ -102,6 +128,8 @@ def view_product():
 
 
 def add_product():
+    """Adds product by user input.
+    if conflict, user input is saved."""
     name = input('What is the name of the product? ')
 
     quantity_error = True
@@ -137,6 +165,7 @@ def add_product():
 
 
 def export_csv():
+    """exports db to backup.csv"""
     with open('backup.csv', 'w', newline='') as csvfile:
         fieldnames = Product.__table__.columns.keys()
         product_writer = csv.DictWriter(
@@ -154,6 +183,9 @@ def export_csv():
 
 
 def add_csv():
+    """adds data from csv to db.
+    if conflict, most recent entry is saved.
+    """
     with open('inventory.csv') as csvfile:
         data = csv.reader(csvfile)
         next(data, None)
