@@ -120,7 +120,7 @@ def view_product():
     print(f'''
             \n--------------------------------------------
             \rName: {product_viewed.product_name}
-            \rPRICE: {product_viewed.product_price}
+            \rPRICE: {product_viewed.product_price / 100}
             \rQTY:{product_viewed.product_quantity}
             \rDate Updated: {product_viewed.date_updated}
             \r--------------------------------------------''')
@@ -199,17 +199,16 @@ def add_csv():
             new_product = Product(
                 product_name=name, product_quantity=quantity, product_price=price, date_updated=date)
 
-            if product_in_db == None:
-                session.add(new_product)
-            else:
-                # TODO: change variables. make it more readable
+            if product_in_db is not None:
                 db_time = product_in_db.date_updated
                 db_time = datetime.datetime(
                     db_time.year, db_time.month, db_time.day)
-                if clean_date(row[3]) > db_time:
+                if date > db_time:
                     session.query(Product).filter(
                         Product.product_name == row[0]).delete()
                     session.add(new_product)
+            else:
+                session.add(new_product)
             session.flush()
         session.commit()
 
