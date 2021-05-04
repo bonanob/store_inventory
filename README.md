@@ -51,5 +51,5 @@ Create a simple store inventory app to keep track of the stock.
 - sqlite is used to create database.
 - Prices are converted to cents ($3.19 becomes 319, for example)
 - Avoiding duplicate products(csv import)**:** if a duplicate product name is found, the app will save the data that was most recently updated for that existing record.
-- Menu option `**a**`: if a duplicate product name is found while the product is attempting to be added to the database, the app will check to see which product entry was most recently updated and only save that data.
-- Menu option `**b**`: the backup CSV output file contains a header row with field titles
+- Menu option `a`: if a duplicate product name is found while the product is attempting to be added to the database, the app will check to see which product entry was most recently updated and only save that data.
+- Menu option `b`: the backup CSV output file contains a header row with field titles
