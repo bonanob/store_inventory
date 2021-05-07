@@ -17,7 +17,6 @@ This console application allows the user to interact with data for a store's inv
 
 - Using SQLAlchemy to create a Model
 - Adding, deleting, updating, rolling back, and querying with SQLAlchemy ORM(session)
-
 - File I/O
 - Cleaning data from `csv` and importing it to db
 - Exporting db as `csv`
